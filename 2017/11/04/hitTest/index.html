@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="前言
+针对iOS事件是怎么传递的这个问题，刚开始面试的几次，基本就是说到屏幕点击-&amp;gt;UIApplication-&amp;gt;UIWindow-&amp;gt;View-&amp;gt;Subview-&amp;gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。
+下面来看下hitTest源码实现1234">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="7an&#39;s Blog">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="iOS-事件传递"/>
+    
+
+    <!--Open Graph Description-->
+    
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="7an&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>iOS-事件传递 - 7an&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">7an's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/fanmaoyu0871">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>iOS-事件传递</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2017-11-04
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/iOS/">iOS</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>针对iOS事件是怎么传递的这个问题，刚开始面试的几次，基本就是说到屏幕点击-&gt;UIApplication-&gt;UIWindow-&gt;View-&gt;Subview-&gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。</p>
+<h3 id="下面来看下hitTest源码实现"><a href="#下面来看下hitTest源码实现" class="headerlink" title="下面来看下hitTest源码实现"></a>下面来看下hitTest源码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123; </div><div class="line"></div><div class="line">    //UIView的三大属性：</div><div class="line">    //isUserInteractionEnabled：我们知道像UIImageView创建出来后这个属性是NO，所以我们点击imageview的时候没反应，但追溯到根源是因为return nil</div><div class="line">    //isHidden：这个属性，我们想当然一个view被隐藏了，当然不能传递事件，但追溯到根源是因为return nil，但如果重写了hitTest方法，就算hidden了也是可以传递事件的</div><div class="line">    //alpha：这个属性如果值&lt;=0.01，几乎跟隐藏了差不多，但追溯到根源是因为return nil</div><div class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01) &#123;</div><div class="line">        return nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //判断触摸点是否在当前视图范围内</div><div class="line">    if ([self pointInside:point withEvent:event]) &#123;</div><div class="line"></div><div class="line">        //如果在当前视图内，再继续递归寻找子试图</div><div class="line">        for (UIView *subview in [self.subviews reverseObjectEnumerator]) &#123;</div><div class="line"></div><div class="line">            //把当前视图点坐标系转换到某子视图坐标系中</div><div class="line">            CGPoint convertedPoint = [subview convertPoint:point fromView:self];</div><div class="line"></div><div class="line">            //调用子视图的hitTest方法，得到最终的view</div><div class="line">            UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</div><div class="line">            if (hitTestView) &#123;</div><div class="line">                return hitTestView;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //如果没有子视图，就返回视图本身</div><div class="line">        return self;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //触摸点不在视图范围内，return nil</div><div class="line">    return nil;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<p>通过看上面的hitTest源码实现，我们大致懂了事件传递的规则，所以我们通过重写该方法，来实现一些”跨常理”的效果，比如view的isUserInteractionEnabled为false的时候也能接受触摸事件，或者view的hidden为true的时候也能接受触摸事件，又或者view的alpha小于0.01时也能接受触摸事件，不过这些有反常规，下面讲些开发中的实际例子来说下hitTest的作用。  </p>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><h3 id="1-增大可触控范围"><a href="#1-增大可触控范围" class="headerlink" title="1.增大可触控范围"></a>1.增大可触控范围</h3><div align="center"><br><img src="http://smnh.me/images/hit-test-increase-touch-area.png" alt="增大"><br></div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123;</div><div class="line"></div><div class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01) &#123;</div><div class="line">        return nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //这个函数把layer锚点沿x，y负方向各移动10个单位，宽高各增加2*10个单位，以此来扩大点击区域</div><div class="line">    CGRect touchRect = CGRectInset(self.bounds, -10, -10);</div><div class="line"></div><div class="line">    //判断point是否在touchRect中</div><div class="line">    if (CGRectContainsPoint(touchRect, point)) &#123;</div><div class="line">        for (UIView *subview in [self.subviews reverseObjectEnumerator]) &#123;</div><div class="line">            CGPoint convertedPoint = [subview convertPoint:point fromView:self];</div><div class="line">            UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</div><div class="line">            if (hitTestView) &#123;</div><div class="line">                return hitTestView;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return self;</div><div class="line">    &#125;</div><div class="line">    return nil;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-子视图超出父视图区域"><a href="#2-子视图超出父视图区域" class="headerlink" title="2.子视图超出父视图区域"></a>2.子视图超出父视图区域</h3><div align="center"><br><img src="WechatIMG16.jpeg" width="80%" height="50%"><br></div><br>&gt; 如上图所示，如果要实现黄色区域可以响应点击事件可以重写红色的视图，如下所示：<br><br><div align="center"><br><img src="WechatIMG17.jpeg" width="80%" height="50%"><br><img src="WechatIMG18.jpeg" width="80%" height="50%"><br></div>
+
+<h5 id="这个主要在凸起的tabbar上使用"><a href="#这个主要在凸起的tabbar上使用" class="headerlink" title="这个主要在凸起的tabbar上使用"></a>这个主要在凸起的tabbar上使用</h5><h3 id="3-超出滚动视图的部分区域"><a href="#3-超出滚动视图的部分区域" class="headerlink" title="3.超出滚动视图的部分区域"></a>3.超出滚动视图的部分区域</h3><div align="center"><br><img src="WechatIMG19.jpeg" width="80%" height="50%"><br></div><br>&gt; 如上图所示，如果要实现两边蓝色区域能够接受左右滑动事件，如下所示：<br><br><div align="center"><br><img src="WechatIMG21.jpeg" width="80%" height="50%"><br><img src="WechatIMG22.jpeg" width="80%" height="50%"><br></div>
+
+<h3 id="4-滴滴视图部分"><a href="#4-滴滴视图部分" class="headerlink" title="4.滴滴视图部分"></a>4.滴滴视图部分</h3><blockquote>
+<p>这部分等我写个demo出来再更新</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于iOS事件的传递，大概就是这样，之后我有想到别的实用例子，再继续更新本节内容。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/fanmaoyu0871" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2017 7an&#39;s Blog<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
