@@ -11,9 +11,9 @@
     <!--Description-->
     
         <meta name="description" content="前言
-针对iOS事件是怎么传递的这个问题，刚开始面试的几次，基本就是说到屏幕点击-&amp;gt;UIApplication-&amp;gt;UIWindow-&amp;gt;View-&amp;gt;Subview-&amp;gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。
+针对iOS事件响应链这个问题，刚开始面试的几次，基本就是说到屏幕点击-&amp;gt;UIApplication-&amp;gt;UIWindow-&amp;gt;View-&amp;gt;Subview-&amp;gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。
 
-下面来看下hitTest源码实现123">
+下面来看下hitTest源码实现123456">
     
 
     <!--Author-->
@@ -23,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="iOS-事件传递"/>
+        <meta property="og:title" content="iOS-事件传递与响应"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>iOS-事件传递 - 7an&#39;s Blog</title>
+    <title>iOS-事件传递与响应 - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -156,7 +156,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>iOS-事件传递</h1>
+                    <h1>iOS-事件传递与响应</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -197,7 +197,7 @@
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>针对iOS事件是怎么传递的这个问题，刚开始面试的几次，基本就是说到屏幕点击-&gt;UIApplication-&gt;UIWindow-&gt;View-&gt;Subview-&gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。</p>
+<p>针对iOS事件响应链这个问题，刚开始面试的几次，基本就是说到屏幕点击-&gt;UIApplication-&gt;UIWindow-&gt;View-&gt;Subview-&gt;…，没有去强调hitTest这个东西，其实面试官的朝向就是这个。</p>
 </blockquote>
 <h3 id="下面来看下hitTest源码实现"><a href="#下面来看下hitTest源码实现" class="headerlink" title="下面来看下hitTest源码实现"></a>下面来看下hitTest源码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123; </div><div class="line"></div><div class="line">    //UIView的三大属性：</div><div class="line">    //isUserInteractionEnabled：我们知道像UIImageView创建出来后这个属性是NO，所以我们点击imageview的时候没反应，但追溯到根源是因为return nil</div><div class="line">    //isHidden：这个属性，我们想当然一个view被隐藏了，当然不能传递事件，但追溯到根源是因为return nil，但如果重写了hitTest方法，就算hidden了也是可以传递事件的</div><div class="line">    //alpha：这个属性如果值&lt;=0.01，几乎跟隐藏了差不多，但追溯到根源是因为return nil</div><div class="line">    if (!self.isUserInteractionEnabled || self.isHidden || self.alpha &lt;= 0.01) &#123;</div><div class="line">        return nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //判断触摸点是否在当前视图范围内</div><div class="line">    if ([self pointInside:point withEvent:event]) &#123;</div><div class="line"></div><div class="line">        //如果在当前视图内，再继续递归寻找子试图</div><div class="line">        for (UIView *subview in [self.subviews reverseObjectEnumerator]) &#123;</div><div class="line"></div><div class="line">            //把当前视图点坐标系转换到某子视图坐标系中</div><div class="line">            CGPoint convertedPoint = [subview convertPoint:point fromView:self];</div><div class="line"></div><div class="line">            //调用子视图的hitTest方法，得到最终的view</div><div class="line">            UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];</div><div class="line">            if (hitTestView) &#123;</div><div class="line">                return hitTestView;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //如果没有子视图，就返回视图本身</div><div class="line">        return self;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //触摸点不在视图范围内，return nil</div><div class="line">    return nil;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过看上面的hitTest源码实现，我们大致懂了事件传递的规则，所以我们通过重写该方法，来实现一些”跨常理”的效果，比如view的isUserInteractionEnabled为false的时候也能接受触摸事件，或者view的hidden为true的时候也能接受触摸事件，又或者view的alpha小于0.01时也能接受触摸事件，不过这些有反常规，下面讲些开发中的实际例子来说下hitTest的作用。  </p>
@@ -209,7 +209,7 @@
 <p>这个主要在凸起的tabbar上使用</p>
 <h3 id="3-超出滚动视图的部分区域"><a href="#3-超出滚动视图的部分区域" class="headerlink" title="3.超出滚动视图的部分区域"></a>3.超出滚动视图的部分区域</h3><div align="center"><br><img src="WechatIMG19.jpeg" width="80%" height="50%"><br></div><br>&gt; 如上图所示，如果要实现两边蓝色区域能够接受左右滑动事件，如下所示：<br><div align="center"><br><img src="WechatIMG21.jpeg" width="80%" height="50%"><br><img src="WechatIMG22.jpeg" width="80%" height="50%"><br></div>
 
-<h3 id="4-滴滴主界面事件传递部分"><a href="#4-滴滴主界面事件传递部分" class="headerlink" title="4.滴滴主界面事件传递部分"></a>4.滴滴主界面事件传递部分</h3><blockquote>
+<h3 id="4-滴滴主界面"><a href="#4-滴滴主界面" class="headerlink" title="4.滴滴主界面"></a>4.滴滴主界面</h3><blockquote>
 <p>这部分等我写个demo出来再更新</p>
 </blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于iOS事件的传递，大概就是这样，之后我有想到别的实用例子，再继续更新本节内容。</p>
