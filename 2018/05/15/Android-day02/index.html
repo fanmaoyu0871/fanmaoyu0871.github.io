@@ -10,6 +10,11 @@
 
     <!--Description-->
     
+        <meta name="description" content="第三方库 SlidingMenu
+导入slidingMenu可参考链接：Android Studio如何导入第三方库
+Activity继承SlidingFragmentActivity  
+123456789101112//设置侧边栏布局setBehindContentView(R.layout.s">
+    
 
     <!--Author-->
     
@@ -18,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="7an&#39;s Blog"/>
+        <meta property="og:title" content="Android_day02"/>
     
 
     <!--Open Graph Description-->
@@ -28,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -39,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Archives - 7an&#39;s Blog</title>
+    <title>Android_day02 - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -143,88 +148,70 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Archives</h1>
+                <div class="post-heading">
+                    <h1>Android_day02</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-05-15
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/05/15/Android-day02/">
-        <h1 class="post-title archive">
-            Android_day02
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/05/15/Android-day01/">
-        <h1 class="post-title archive">
-            Android_day01
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2017/11/04/hitTest/">
-        <h1 class="post-title archive">
-            iOS-事件传递与响应
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-11-04
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2017/11/02/first/">
-        <h1 class="post-title archive">
-            写在最前面
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2017-11-02
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="第三方库-SlidingMenu"><a href="#第三方库-SlidingMenu" class="headerlink" title="第三方库 SlidingMenu"></a>第三方库 SlidingMenu</h2><ul>
+<li><strong>导入slidingMenu</strong><br>可参考链接：<a href="https://www.cnblogs.com/android-blogs/p/5970285.html" target="_blank" rel="external">Android Studio如何导入第三方库</a></li>
+<li><p><strong>Activity继承SlidingFragmentActivity</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//设置侧边栏布局</div><div class="line">setBehindContentView(R.layout.sliding_left_menu);</div><div class="line">//获取侧边栏对象</div><div class="line">SlidingMenu slidingMenu = getSlidingMenu();</div><div class="line">//设置为全屏幕触摸</div><div class="line">slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);</div><div class="line">//设置为左右两个菜单</div><div class="line">slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);</div><div class="line">//设置右边菜单</div><div class="line">slidingMenu.setSecondaryMenu(R.layout.sliding_right_menu);</div><div class="line">//主控制器留有100像素宽度</div><div class="line">slidingMenu.setBehindOffset(100);</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置左侧和主fragment</strong>  <code>解耦，不然都在一个Activity里写逻辑</code><br><code>1.一开始两侧用空的FrameLayout占位</code><br><code>2.通过FragmentManager管理两个fragment</code>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">FragmentManager fragmentManager = getSupportFragmentManager();</div><div class="line">FragmentTransaction transaction = fragmentManager.beginTransaction();</div><div class="line">transaction.replace(R.id.fl_content, new ContentFragment(), TAG_CONTENT);</div><div class="line">transaction.replace(R.id.fl_left_menu, new LeftMenuFragment(), TAG_LEFT_MENU);</div><div class="line">transaction.commit();</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<blockquote>
+<p>今天先到这，主要时间花在了写iOS sdk上了。。。</p>
+</blockquote>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
