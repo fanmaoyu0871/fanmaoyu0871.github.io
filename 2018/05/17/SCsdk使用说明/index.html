@@ -18,7 +18,7 @@
 
 在info.plist里面添加
 
-1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;&amp;lt;dict&amp;gt;	&amp;lt;key&amp;gt;NSAllowsArbitraryLoad">
+1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;	&amp;lt;dict&amp;gt;		&amp;lt;key&amp;gt;NSAllowsArbitraryLo">
     
 
     <!--Author-->
@@ -209,7 +209,7 @@
 <ul>
 <li>在info.plist里面添加</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt;	&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;	&lt;dict&gt;		&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
 <ul>
 <li>application:didFinishLaunchingWithOptions:中调用：</li>
 </ul>
@@ -222,8 +222,7 @@
 <ul>
 <li>在app下的build.gradle中添加如下：</li>
 </ul>
-<div><img src="WechatIMG95.jpeg"></div>
-
+<p><div><img src="WechatIMG95.jpeg"></div><br><br></p>
 <pre>
 repositories{
     flatDir{
@@ -231,8 +230,6 @@ repositories{
     }
 }
 </pre>
-
-
 
 <pre>
 compile(name:'SCsdk-debug', ext:'aar')
@@ -246,7 +243,7 @@ compile(name:'SCsdk-debug', ext:'aar')
 <li>在首次打开app获取到权限后，调用： </li>
 </ul>
 <pre>
-    SCStatisticsSDK.registerSDK(mActivity);
+SCStatisticsSDK.registerSDK(mActivity);
 </pre>
 
 
