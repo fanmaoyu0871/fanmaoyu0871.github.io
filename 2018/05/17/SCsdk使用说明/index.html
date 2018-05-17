@@ -183,6 +183,18 @@
 
             <!-- Tags and categories -->
            
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/其他/">其他</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
 
             <!-- Gallery -->
             
@@ -205,13 +217,9 @@
 <h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
 <li>将SCsdk-release.aar放入工程libs目录下：</li>
 </ul>
-<div><img src="WechatIMG94.jpeg"></div>
-
 <ul>
 <li>在app下的build.gradle中添加如下：</li>
 </ul>
-<div><img src="WechatIMG95.jpeg"></div>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repositories&#123;	flatDir&#123; 		dirs &apos;libs&apos;</div><div class="line">	&#125;&#125;</div></pre></td></tr></table></figure>
 <pre><code>compile(name:&apos;SCsdk-debug&apos;, ext:&apos;aar&apos;)
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 项目需要3个权限：</div><div class="line">	</div><div class="line">```&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div></pre></td></tr></table></figure>
