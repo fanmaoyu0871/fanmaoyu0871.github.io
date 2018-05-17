@@ -18,7 +18,7 @@
 
 在info.plist里面添加
 
-1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;	&amp;lt;dict&amp;gt;		&amp;lt;key&amp;gt;NSAllowsArbitraryLo">
+1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;&amp;lt;dict&amp;gt;&amp;lt;key&amp;gt;NSAllowsArbitraryLoads">
     
 
     <!--Author-->
@@ -209,7 +209,7 @@
 <ul>
 <li>在info.plist里面添加</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;	&lt;dict&gt;		&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt;&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
 <ul>
 <li>application:didFinishLaunchingWithOptions:中调用：</li>
 </ul>
@@ -222,19 +222,10 @@
 <ul>
 <li>在app下的build.gradle中添加如下：</li>
 </ul>
-<p><div><img src="WechatIMG95.jpeg"></div><br><br></p>
-<pre>
-repositories{
-    flatDir{
-        dirs 'libs'
-    }
-}
-</pre>
+<div><img src="WechatIMG95.jpeg"></div>
 
-<pre>
-compile(name:'SCsdk-debug', ext:'aar')
-</pre>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">repositories&#123;</div><div class="line">	flatDir&#123;</div><div class="line">		dirs &apos;libs&apos;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile(name:&apos;SCsdk-debug&apos;, ext:&apos;aar&apos;)</div></pre></td></tr></table></figure>
 <ul>
 <li>项目需要3个权限： </li>
 </ul>
@@ -242,11 +233,7 @@ compile(name:'SCsdk-debug', ext:'aar')
 <ul>
 <li>在首次打开app获取到权限后，调用： </li>
 </ul>
-<pre>
-SCStatisticsSDK.registerSDK(mActivity);
-</pre>
-
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SCStatisticsSDK.registerSDK(mActivity);</div></pre></td></tr></table></figure>
 
 
                 
