@@ -13,7 +13,8 @@
         <meta name="description" content="SCsdk使用说明iOS
 将SCsdk.framework拖入主工程中
 在info.plist里面添加
-  1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;&amp;lt;dict&amp;gt;	&amp;lt;key&amp;gt;NSAllowsArbitraryLoads&amp;l">
+
+1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;&amp;lt;dict&amp;gt;	&amp;lt;key&amp;gt;NSAllowsArbitraryLoads&amp;lt">
     
 
     <!--Author-->
@@ -186,13 +187,13 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <h1 id="SCsdk使用说明"><a href="#SCsdk使用说明" class="headerlink" title="SCsdk使用说明"></a>SCsdk使用说明</h1><h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><ul>
 <li>将SCsdk.framework拖入主工程中<div><img src="WechatIMG93.jpeg"></div></li>
-<li><p>在info.plist里面添加</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt;	&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
-</li>
-<li><p>application:didFinishLaunchingWithOptions:中调用：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[SCStatisticsSDK registerSDK];</div></pre></td></tr></table></figure>
-</li>
+<li>在info.plist里面添加</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt;	&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>application:didFinishLaunchingWithOptions:中调用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[SCStatisticsSDK registerSDK];</div></pre></td></tr></table></figure>
 <h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
 <li><p>将SCsdk-release.aar放入工程libs目录下：</p>
 <div><img src="WechatIMG94.jpeg"></div>
@@ -200,14 +201,14 @@
 <li><p>在app下的build.gradle中添加如下：</p>
 <div><img src="WechatIMG95.jpeg"></div>
 
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repositories&#123;flatDir&#123;		dirs &apos;libs&apos;</div><div class="line"> 	&#125;&#125;</div></pre></td></tr></table></figure>
-<p>  ```<br>  compile(name:’SCsdk-debug’, ext:’aar’)</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 项目需要3个权限：</div><div class="line"></div><div class="line">	```&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div></pre></td></tr></table></figure>
 </li>
-<li><p>在首次打开app获取到权限后，调用：</p>
-<pre><code>SCStatisticsSDK.registerSDK(mActivity);
-</code></pre></li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">repositories&#123;	flatDir&#123; 		dirs &apos;libs&apos;</div><div class="line">	&#125;&#125;</div></pre></td></tr></table></figure>
+<pre><code>compile(name:&apos;SCsdk-debug&apos;, ext:&apos;aar&apos;)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">* 项目需要3个权限：</div><div class="line">	</div><div class="line">```&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div></pre></td></tr></table></figure>
+
+* 在首次打开app获取到权限后，调用：
+</code></pre><p>SCStatisticsSDK.registerSDK(mActivity);<br>```</p>
 
 
                 
