@@ -10,6 +10,11 @@
 
     <!--Description-->
     
+        <meta name="description" content="SCsdk使用说明iOS
+将SCsdk.framework拖入主工程中
+在info.plist里面添加
+  1&amp;lt;key&amp;gt;NSAppTransportSecurity&amp;lt;/key&amp;gt;&amp;lt;dict&amp;gt;	&amp;lt;key&amp;gt;NSAllowsArbitraryLoads&amp;l">
+    
 
     <!--Author-->
     
@@ -18,7 +23,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="7an&#39;s Blog"/>
+        <meta property="og:title" content="SCsdk使用说明"/>
     
 
     <!--Open Graph Description-->
@@ -28,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -39,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2018 - 7an&#39;s Blog</title>
+    <title>SCsdk使用说明 - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -143,88 +148,77 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2018</h1>
+                <div class="post-heading">
+                    <h1>SCsdk使用说明</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-05-17
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/05/17/SCsdk使用说明/">
-        <h1 class="post-title archive">
-            SCsdk使用说明
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-17
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/05/16/Android-day03/">
-        <h1 class="post-title archive">
-            Android_day03
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-16
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/05/15/Android-day02/">
-        <h1 class="post-title archive">
-            Android_day02
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-15
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/05/15/Android-day01/">
-        <h1 class="post-title archive">
-            Android_day01
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-05-15
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h1 id="SCsdk使用说明"><a href="#SCsdk使用说明" class="headerlink" title="SCsdk使用说明"></a>SCsdk使用说明</h1><h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><ul>
+<li>将SCsdk.framework拖入主工程中<div><img src="WechatIMG93.jpeg"></div></li>
+<li><p>在info.plist里面添加</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;key&gt;NSAppTransportSecurity&lt;/key&gt;&lt;dict&gt;	&lt;key&gt;NSAllowsArbitraryLoads&lt;/key&gt;	&lt;true/&gt;&lt;/dict&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>application:didFinishLaunchingWithOptions:中调用：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[SCStatisticsSDK registerSDK];</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><ul>
+<li>将SCsdk-release.aar放入工程libs目录下：<div><img src="WechatIMG94.jpeg"></div></li>
+<li>在app下的build.gradle中添加如下：<br><div><img src="WechatIMG95.jpeg"></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repositories&#123;    flatDir&#123;        dirs &apos;libs&apos;    &#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<pre><code>compile(name:&apos;SCsdk-debug&apos;, ext:&apos;aar&apos;)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* 项目需要3个权限：</div><div class="line"></div><div class="line"> ```&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;&gt;&lt;/uses-permission&gt;&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;&gt;&lt;/uses-permission&gt;</div></pre></td></tr></table></figure>
+
+* 在首次打开app获取到权限后，调用：
+</code></pre><p>SCStatisticsSDK.registerSDK(mActivity);<br>```</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
