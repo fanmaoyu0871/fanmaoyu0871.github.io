@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="##ViewPagerIndicator使用这个东西挺多地方用到的，像网易新闻头部的滚动标签，轮播图的指示器，都是用这个完成的，先用几点总结一下，后面会继续更新这节。
+
+1.导入库 ViewPagerIndicator
+2.在布局文件添加:
+
+123456&amp;lt;com.viewpagerindic">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="7an&#39;s Blog">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android-day05"/>
+    
+
+    <!--Open Graph Description-->
+    
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="7an&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Android-day05 - 7an&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">7an's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/fanmaoyu0871">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Android-day05</h1>
+                    
+                    <h2 class="post-subheading">
+                        ViewPagerIndicator使用
+                    </h2>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-06-06
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+<a href="/categories/Android笔记/">Android笔记</a>
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>##ViewPagerIndicator使用<br>这个东西挺多地方用到的，像网易新闻头部的滚动标签，轮播图的指示器，都是用这个完成的，先用几点总结一下，后面会继续更新这节。</p>
+<ul>
+<li>1.导入库 <code>ViewPagerIndicator</code></li>
+<li>2.在布局文件添加:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;com.viewpagerindicator.TabPageIndicator</div><div class="line">    android:id=&quot;@+id/home_viewpager_indicator&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;wrap_content&quot;</div><div class="line">    android:visibility=&quot;gone&quot;&gt;</div><div class="line">&lt;/com.viewpagerindicator.TabPageIndicator&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>3.修改viewpagerIndicator的样式:</p>
+<ul>
+<li><p>3.1在values/styles文件中加入，其中的样式都是可以修改的，比如字体颜色、padding、下划线样式等，具体可以点进去看<mark>Widget.TabPageIndicator</mark>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;style name=&quot;MyTextAppearance.TabPageIndicator&quot; parent=&quot;Widget.TabPageIndicator&quot;&gt;</div><div class="line">       &lt;item name=&quot;android:background&quot;&gt;@drawable/nav_title_background&lt;/item&gt;</div><div class="line">       &lt;item name=&quot;android:textColor&quot;&gt;@drawable/nav_title_textcolor&lt;/item&gt;</div><div class="line">       &lt;item name=&quot;android:textSize&quot;&gt;14sp&lt;/item&gt;</div><div class="line">       &lt;item name=&quot;android:paddingLeft&quot;&gt;12dp&lt;/item&gt;</div><div class="line">       &lt;item name=&quot;android:paddingRight&quot;&gt;12dp&lt;/item&gt;</div><div class="line">   &lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>3.2在values/styles的AppTheme中加入上面的样式，记住这个name不能写错，这样的话，就不需要修改任何文件了:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style name=&quot;AppTheme&quot; parent=&quot;android:Theme.Light.NoTitleBar&quot;&gt;</div><div class="line">       &lt;!-- Customize your theme here. --&gt;</div><div class="line">       &lt;item name=&quot;vpiTabPageIndicatorStyle&quot;&gt;@style/MyTextAppearance.TabPageIndicator&lt;/item&gt;</div><div class="line">   &lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>4.代码中使用:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//viewpager设置数据源</div><div class="line">home_viewPager.setAdapter(new HomePageAdapter(getFragmentManager()));</div><div class="line"></div><div class="line">//viewpagerIndicator显示出来，这是为了防止产生bug</div><div class="line">tabPageIndicator.setVisibility(View.VISIBLE);</div><div class="line"></div><div class="line">//将viewpagerIndicator 与 viewpager 绑定在一起</div><div class="line">tabPageIndicator.setViewPager(home_viewPager);</div></pre></td></tr></table></figure>
+<p><strong>在viewpager的adapter中实现下面方法，来显示标签文字:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public CharSequence getPageTitle(int position&#123;</div><div class="line">	CategoryModel.Beans beans = category_list.get(position);</div><div class="line">	return beans.rootCat.name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>5.<strong>注意事项:</strong></p>
+<p>  对viewpager的监听事件，需要驾到viewpagerIndicator上，不然无效，如下:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">tabPageIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() &#123;</div><div class="line">	@Override</div><div class="line">	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) &#123;   </div><div class="line">	&#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPageSelected(int position) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onPageScrollStateChanged(int state) &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/fanmaoyu0871" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 7an&#39;s Blog<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
