@@ -10,12 +10,12 @@
 
     <!--Description-->
     
-        <meta name="description" content="html标签篇
+        <meta name="description" content="html篇
 像h1, p, ul, li, a, dl, dt, dd, img中的alt等这些语义化的标签能方便搜索引擎收录.
 
 a中的title属性，鼠标放上去会有提示.
 
-&amp;lt;dl&amp;gt;&amp;lt;dt&amp;gt;&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;/dd&amp;gt;&amp;lt;/dl">
+&amp;lt;dl&amp;gt;&amp;lt;dt&amp;gt;&amp;lt;/dt&amp;gt;&amp;lt;dd&amp;gt;&amp;lt;/dd&amp;gt;&amp;lt;/dl&amp;g">
     
 
     <!--Author-->
@@ -198,7 +198,7 @@ a中的title属性，鼠标放上去会有提示.
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h2 id="html标签篇"><a href="#html标签篇" class="headerlink" title="html标签篇"></a>html标签篇</h2><ul>
+                <h2 id="html篇"><a href="#html篇" class="headerlink" title="html篇"></a>html篇</h2><ul>
 <li><p>像h1, p, ul, li, a, dl, dt, dd, img中的alt等这些语义化的标签能方便搜索引擎收录.</p>
 </li>
 <li><p>a中的title属性，鼠标放上去会有提示.</p>
@@ -223,20 +223,21 @@ a中的title属性，鼠标放上去会有提示.
 <h2 id="css篇"><a href="#css篇" class="headerlink" title="css篇"></a>css篇</h2><ul>
 <li><p>首页使用内嵌样式（在<code>head</code>中写<code>style</code>），能提升首页加载性能，见淘宝.</p>
 </li>
+<li><p>用img可以让搜索引擎爬取，background-image不行.</p>
+</li>
 <li><p><code>padding:10px(上) 20px(左右) 30px(下);</code></p>
 </li>
 <li><p>padding变长，border也会变长. <strong>解决办法：</strong>用<code>text-indent:15px;</code>来替代<code>padding-left:15px;</code></p>
 </li>
 <li><p>块元素水平居中：<code>margin:100px auto;</code></p>
 </li>
-<li><p><code>上下margin</code>的合并(左右margin没有合并)，最终等于两者中<strong>较大</strong>的那个.</p>
+<li><p><code>上下margin</code>的合并(左右margin没有合并)，最终等于两者中<strong>较大</strong>的那个.<strong>只有块元素有margin合并问题，行内块和内联元素不会合并</strong>.</p>
 </li>
 <li><p>body默认有<code>8px</code>的<code>margin</code>.</p>
 </li>
 <li><p>margin-top(<strong>其他方向没有</strong>)的塌陷问题：<code>父div</code>包裹<code>设置了margin-top的子div</code>，父div也会产生margin-top. <strong>解决办法：</strong> 1.父div设置边框(<em>基本不用</em>). 2.父div设置<code>overflow:hidden;</code>(<em>这个子div如果溢出，会被裁减</em>). 3.父div加入<code>:before{content:&quot;&quot;;display:table;}</code>.（<em>类似加了边框</em>）</p>
 </li>
-<li><p>###块元素</p>
-<ul>
+<li><h3 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h3><ul>
 <li><p>支持所有样式</p>
 </li>
 <li><p>如果没有设置宽度，默认宽度为父级的100%.</p>
@@ -245,8 +246,7 @@ a中的title属性，鼠标放上去会有提示.
 </li>
 </ul>
 </li>
-<li><p>###行内元素</p>
-<ul>
+<li><h3 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h3><ul>
 <li><p>支持部分样式（不支持<code>宽高</code>、<code>margin上下</code>、<code>padding上下</code>）</p>
 </li>
 <li><p>宽高由内容决定.</p>
@@ -257,8 +257,7 @@ a中的title属性，鼠标放上去会有提示.
 </li>
 </ul>
 </li>
-<li><p>###内联块元素 （img和input是特殊的）</p>
-<ul>
+<li><h3 id="内联块元素（img和input是特殊的）"><a href="#内联块元素（img和input是特殊的）" class="headerlink" title="内联块元素（img和input是特殊的）"></a>内联块元素（img和input是特殊的）</h3><ul>
 <li><p>支持全部样式.</p>
 </li>
 <li><p>如果没设置宽高，由内容决定.</p>
@@ -266,6 +265,31 @@ a中的title属性，鼠标放上去会有提示.
 <li><p>两个<code>&lt;a&gt;</code>标签即使设置成inline-block，他们之间<code>代码换行</code>的话，还是会有间距问题.</p>
 </li>
 <li><p>父元素如果是块级元素，父元素使用<code>text-align</code>能够使子元素水平居中，使用<code>line-height</code>使子元素垂直居中.</p>
+</li>
+</ul>
+</li>
+<li><h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><ul>
+<li><p>文字环绕通过浮动完成，其中div1浮动，div2不浮动，div2的文字会自动环绕div1.</p>
+<p><img src="float"></p>
+</li>
+<li><p>清除浮动</p>
+<ul>
+<li>1.父级元素<code>overflow:hidden;</code>;</li>
+<li>2.在最后一个子元素后面加一个空的div，然后<code>clear:both;</code>;</li>
+<li><p>3.<code>.clearfix:before, .clearfix:after{content:&#39;&#39;; display:table; }</code>，<code>.clearfix:after{clear:both}</code>，还要加个<code>.clearfix{zoom:1}</code>这个是用来兼容IE的，因为有些版本不支持:after.</p>
+<p><strong><em>ps:上面第3点是最完整的清除margin-top塌陷和清除浮动的代码.</em></strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><ul>
+<li><p><strong>relative</strong> : 相对于自身元素偏移，元素依然占位原来的位置;</p>
+</li>
+<li><p><strong>absolute</strong> : 相对于设置了fixed,relative,absolute的父元素进行绝对定位，如果都没有，则相对于body.<strong>绝对定位的元素的margin是有效的.</strong></p>
+</li>
+<li><p><strong>fixed</strong> : fixed是相对于浏览器窗口进行定位.</p>
+<p><strong>ps:绝对定位和固定定位的块元素和内联元素会转换成行内块元素</strong></p>
 </li>
 </ul>
 </li>
