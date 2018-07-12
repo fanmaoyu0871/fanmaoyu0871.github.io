@@ -235,7 +235,7 @@ a中的title属性，鼠标放上去会有提示.
 </li>
 <li><p>body默认有<code>8px</code>的<code>margin</code>.</p>
 </li>
-<li><p>margin-top(<strong>其他方向没有</strong>)的塌陷问题：<code>父div</code>包裹<code>设置了margin-top的子div</code>，父div也会产生margin-top. <strong>解决办法：</strong> 1.父div设置边框(<em>基本不用</em>). 2.父div设置<code>overflow:hidden;</code>(<em>这个子div如果溢出，会被裁减</em>). 3.父div加入<code>:before{content:&quot;&quot;;display:table;}</code>.（<em>类似加了边框</em>）</p>
+<li><p>margin-top(<strong>其他方向没有,浮动的元素也不会引起塌陷</strong>)的塌陷问题：<code>父div</code>包裹<code>设置了margin-top的子div</code>，父div也会产生margin-top. <strong>解决办法：</strong> 1.父div设置边框(<em>基本不用</em>). 2.父div设置<code>overflow:hidden;</code>(<em>这个子div如果溢出，会被裁减</em>). 3.父div加入<code>:before{content:&quot;&quot;;display:table;}</code>.（<em>类似加了边框</em>）</p>
 </li>
 <li><h3 id="块元素"><a href="#块元素" class="headerlink" title="块元素"></a>块元素</h3><ul>
 <li><p>支持所有样式</p>
