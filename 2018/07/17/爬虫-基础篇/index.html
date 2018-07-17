@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="入门读取网页内容 - 最简单方式urllib2.urlopen(&amp;quot;http://www.baidu.com/&amp;quot;).read()
+ps：上面这个能够简单获取网页内容，但是它不能进行http请求头处理，查看urllib2.urlopen源码可以发现，它的User-Agent带着pyt">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="7an&#39;s Blog">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="爬虫-基础篇"/>
+    
+
+    <!--Open Graph Description-->
+    
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="7an&#39;s Blog"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>爬虫-基础篇 - 7an&#39;s Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    
+	
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">7an's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/fanmaoyu0871">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>爬虫-基础篇</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-07-17
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/python/">#python</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/爬虫/">爬虫</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="读取网页内容-最简单方式"><a href="#读取网页内容-最简单方式" class="headerlink" title="读取网页内容 - 最简单方式"></a>读取网页内容 - 最简单方式</h3><p><code>urllib2.urlopen(&quot;http://www.baidu.com/&quot;).read()</code></p>
+<p>ps：上面这个能够简单获取网页内容，但是它不能进行http请求头处理，查看<code>urllib2.urlopen</code>源码可以发现，它的<code>User-Agent</code>带着<code>python</code>字段，这很容易被网站人员识破，所以我们需要修改http请求头.</p>
+<h3 id="读取网页内容-进阶方式"><a href="#读取网页内容-进阶方式" class="headerlink" title="读取网页内容 - 进阶方式"></a>读取网页内容 - 进阶方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># encoding: utf-8</div><div class="line"></div><div class="line">import urllib2</div><div class="line"></div><div class="line">ua_header = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&quot;&#125;</div><div class="line"></div><div class="line">request = urllib2.Request(&quot;http://www.baidu.com/&quot;, headers=ua_header)</div><div class="line"></div><div class="line">response = urllib2.urlopen(request)</div><div class="line"></div><div class="line">print response.read()</div></pre></td></tr></table></figure>
+<p>ps：如果get请求中参数带中文，需要用<code>urllib.urlencode(dict)</code>来进行编码，用<code>urllib.unquote(string)</code>来进行解码.</p>
+<p><code>urllib2</code>是<code>urllib</code>的第二次改写封装，优化了性能等等，一般<code>urllib</code>就用来编码解码…</p>
+<h3 id="百度贴吧爬虫案例"><a href="#百度贴吧爬虫案例" class="headerlink" title="百度贴吧爬虫案例"></a>百度贴吧爬虫案例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># encoding: utf-8</div><div class="line"></div><div class="line">import urllib2</div><div class="line">import urllib</div><div class="line"></div><div class="line"></div><div class="line">ua_header = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&quot;&#125;</div><div class="line"></div><div class="line">def loadPage(url, filename):</div><div class="line"></div><div class="line">    print &quot;正在下载: &quot; + filename</div><div class="line"></div><div class="line">    request = urllib2.Request(url, headers=ua_header)</div><div class="line">    html = urllib2.urlopen(request).read()</div><div class="line"></div><div class="line">    return html</div><div class="line"></div><div class="line">def writePage(html, filename):</div><div class="line"></div><div class="line">    print &quot;正在写入: &quot; + filename</div><div class="line"></div><div class="line">    with open(filename, &quot;w&quot;) as f:</div><div class="line">        f.write(html)</div><div class="line"></div><div class="line">def tiebaSpider(url, begin, end):</div><div class="line"></div><div class="line">    for i in range(begin, end+1):</div><div class="line">    </div><div class="line">        pn = (i-1)*50</div><div class="line"></div><div class="line">        full_url = url + &quot;&amp;pn=&quot; + str(pn)</div><div class="line"></div><div class="line">        file_name = &quot;第&quot; + str(i) + &quot;页.html&quot;</div><div class="line"></div><div class="line">        html = loadPage(full_url, file_name)</div><div class="line"></div><div class="line">        writePage(html, file_name)</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &quot;__main__&quot;:</div><div class="line">    kw = raw_input(&quot;enter key words:&quot;)</div><div class="line">    begin = int(raw_input(&quot;enter page begin:&quot;))</div><div class="line">    end = int(raw_input(&quot;enter page end:&quot;))</div><div class="line"></div><div class="line">    url = &quot;http://tieba.baidu.com/f?&quot;</div><div class="line">    key = urllib.urlencode(&#123;&quot;kw&quot;:kw&#125;)</div><div class="line">    full_url = url + key</div><div class="line"></div><div class="line">    tiebaSpider(url, begin, end)</div></pre></td></tr></table></figure>
+<h3 id="使用代理爬取数据"><a href="#使用代理爬取数据" class="headerlink" title="使用代理爬取数据"></a>使用代理爬取数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># encoding: utf-8</div><div class="line"></div><div class="line">import urllib2</div><div class="line">import os</div><div class="line"></div><div class="line">#把帐号密码放到系统环境变量中，安全!</div><div class="line">proxy_user = os.environ.get(&quot;proxyuser&quot;)</div><div class="line">proxy_pwd = os.environ.get(&quot;proxypassword&quot;)</div><div class="line"></div><div class="line">proxy_handler = urllib2.ProxyHandler(&#123;&quot;http&quot;:proxy_user + &quot;:&quot; + proxy_pwd + &quot;@114.11.22.33:16839&quot;&#125;)</div><div class="line"></div><div class="line">opener = urllib2.build_opener(proxy_handler)</div><div class="line"></div><div class="line">request = urllib2.Request(&quot;http://www.baidu.com/&quot;)</div><div class="line"></div><div class="line">response = opener.open(request).read()</div></pre></td></tr></table></figure>
+<h3 id="防止ip被封"><a href="#防止ip被封" class="headerlink" title="防止ip被封"></a>防止ip被封</h3><p>用私人代理，大约几千个ip供使用，花钱..</p>
+<h3 id="通过cookie模拟登录-cookielib-amp-HTTPCookieProcessor"><a href="#通过cookie模拟登录-cookielib-amp-HTTPCookieProcessor" class="headerlink" title="通过cookie模拟登录-cookielib&amp;HTTPCookieProcessor"></a>通过cookie模拟登录-cookielib&amp;HTTPCookieProcessor</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># encoding: utf-8</div><div class="line"></div><div class="line">import urllib2</div><div class="line">import cookielib</div><div class="line">import urllib</div><div class="line"></div><div class="line">#生成cookie</div><div class="line">cookie = cookielib.CookieJar()</div><div class="line"></div><div class="line">#生成cookie处理器</div><div class="line">cookie_handler =  urllib2.HTTPCookieProcessor(cookie)</div><div class="line"></div><div class="line">opener = urllib2.build_opener(cookie_handler)</div><div class="line"></div><div class="line">ua_header = &#123;&quot;User-Agent&quot; : &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36&quot;&#125;</div><div class="line"></div><div class="line">url = &quot;http://www.renren.com/PLogin.do&quot;</div><div class="line"></div><div class="line">data = &#123;&quot;email&quot;:&quot;xxxx@163.com&quot;, &quot;password&quot;:&quot;xxxxx&quot;&#125;</div><div class="line"></div><div class="line">data = urllib.urlencode(data)</div><div class="line"></div><div class="line">request = urllib2.Request(url, headers=ua_header, data=data)</div><div class="line"></div><div class="line">#这里登录完后，opener会保存着cookie</div><div class="line">response = opener.open(request)</div><div class="line"></div><div class="line">#后面可以利用cookie访问任意网址</div><div class="line">reponse_profile = opener.open(&quot;http://www.renren.com/4314141/profile&quot;)</div></pre></td></tr></table></figure>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/fanmaoyu0871" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2018 7an&#39;s Blog<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
