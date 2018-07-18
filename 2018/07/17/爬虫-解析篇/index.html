@@ -233,7 +233,9 @@
 <li><p><code>pattern.sub()</code>：替换</p>
 </li>
 </ul>
-
+<h3 id="使用lxml解析html"><a href="#使用lxml解析html" class="headerlink" title="使用lxml解析html"></a>使用<code>lxml</code>解析html</h3><p>用re虽然效率高，但是很复杂，所以使用<code>lxml</code>来解析网页，ps：<code>lxml</code>不是一个专属python的库，所以不能用pip安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from lxml import etree</div><div class="line"></div><div class="line">#用lxml将html转换成xml</div><div class="line">xml = etree.HTML(html)</div><div class="line"></div><div class="line">#通过xpath找到元素，返回list</div><div class="line">list = xml.xpath(&quot;//div[@class=&apos;xxxx&apos;]//a[@class=&quot;xxxx&quot;]/@href&quot;);</div></pre></td></tr></table></figure>
+<h3 id="Beautiful-Soup4-解析html"><a href="#Beautiful-Soup4-解析html" class="headerlink" title="Beautiful Soup4 解析html"></a>Beautiful Soup4 解析html</h3><h3 id="JsonPath-解析json"><a href="#JsonPath-解析json" class="headerlink" title="JsonPath 解析json"></a>JsonPath 解析json</h3>
 
                 
             </div>
