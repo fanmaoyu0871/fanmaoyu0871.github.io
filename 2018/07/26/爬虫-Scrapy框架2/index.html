@@ -21,7 +21,7 @@ crawlspider.py123456789101112131415161718192021">
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="爬虫-Scrapy框架2"/>
+        <meta property="og:title" content="爬虫-Scrapy框架(二)"/>
     
 
     <!--Open Graph Description-->
@@ -42,7 +42,7 @@ crawlspider.py123456789101112131415161718192021">
 
     <!-- Title -->
     
-    <title>爬虫-Scrapy框架2 - 7an&#39;s Blog</title>
+    <title>爬虫-Scrapy框架(二) - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -154,7 +154,7 @@ crawlspider.py123456789101112131415161718192021">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>爬虫-Scrapy框架2</h1>
+                    <h1>爬虫-Scrapy框架(二)</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -181,7 +181,7 @@ crawlspider.py123456789101112131415161718192021">
                         
 
 
-<a href="/tags/python/">#python</a>
+<a href="/tags/python-scrapy/">#python scrapy</a>
 
 
                     
@@ -212,7 +212,11 @@ crawlspider.py123456789101112131415161718192021">
 </ul>
 <h3 id="LinkExtractor"><a href="#LinkExtractor" class="headerlink" title="LinkExtractor"></a>LinkExtractor</h3><p><code>LinkExtractor(allow=r&quot;search=key&amp;wd=\d+&quot;)</code>：提取当前响应中符合allow规则的url，allow中写要爬取的url的共性标识，</p>
 <h3 id="Rule"><a href="#Rule" class="headerlink" title="Rule"></a>Rule</h3><p><code>Rule(LinkExtractor(allow=r&#39;Items/&#39;), callback=&#39;parse_item&#39;, process_links=&#39;deal_links&#39; follow=True)</code>：将LinkExtractor与callback对应，<code>follow</code>指定是否要深度爬取，<code>process_links</code>指定url过滤器,参数是所有的url列表.</p>
-
+<h3 id="setting文件中变量的使用"><a href="#setting文件中变量的使用" class="headerlink" title="setting文件中变量的使用"></a>setting文件中变量的使用</h3><p><code>from scrapy.conf import settings</code>：把settings当字典来用</p>
+<p>或者</p>
+<p><code>from settings import USER_AGENTS</code>：一个个导入</p>
+<h3 id="开启log"><a href="#开启log" class="headerlink" title="开启log"></a>开启log</h3><p>在setttings文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">LOG_FILE = &quot;filename.log&quot;</div><div class="line">LOG_LEVEL = &quot;DEBUG&quot;</div></pre></td></tr></table></figure>
 
                 
             </div>
