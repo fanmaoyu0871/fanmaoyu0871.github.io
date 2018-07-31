@@ -12,6 +12,10 @@
 
     <!--Description-->
     
+        <meta name="description" content="RedisRedis和MongoDB一样，属于NoSQL变种，他们都是基于内存的读写，当然，最终还是依赖于磁盘存储，Redis基于key-value存储，MongoDB基于json存储.
+安装配置mac直接通过：brew install redis安装
+启动：redis-server /usr/lo">
+    
 
     <!--Author-->
     
@@ -20,7 +24,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="7an&#39;s Blog"/>
+        <meta property="og:title" content="数据库-Redis"/>
     
 
     <!--Open Graph Description-->
@@ -30,7 +34,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -41,7 +45,7 @@
 
     <!-- Title -->
     
-    <title>爬虫 - 7an&#39;s Blog</title>
+    <title>数据库-Redis - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -145,88 +149,97 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>爬虫</h1>
+                <div class="post-heading">
+                    <h1>数据库-Redis</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-07-31
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/redis/">#redis</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/数据库/">数据库</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/07/26/爬虫-Scrapy框架2/">
-        <h1 class="post-title archive">
-            爬虫-Scrapy框架(二)
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-26
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/07/24/爬虫-Scrapy框架1/">
-        <h1 class="post-title archive">
-            爬虫-Scrapy框架(一)
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-24
-    </p>
-</div>
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>Redis和MongoDB一样，属于NoSQL变种，他们都是基于内存的读写，当然，最终还是依赖于磁盘存储，Redis基于key-value存储，MongoDB基于json存储.</p>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>mac直接通过：<code>brew install redis</code>安装</p>
+<p>启动：<code>redis-server /usr/local/etc/redis.conf</code>(默认端口为<code>6379</code>)</p>
+<p>客户端连接：<code>redis-cli</code></p>
+<p>可视化客户端软件：<code>Redis Destop Manager</code></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p><code>select 1</code> redis默认有16个数据库，这里表示使用第1个</p>
+<p><code>keys *</code> 查看所有key</p>
+<p><code>set key value</code> 存储string</p>
+<p><code>get key</code> 读取</p>
+<p><code>setex key seconds value</code> 设置有效时间</p>
+<p><code>type key</code> 类型：string、hash、list、set、zset</p>
+<p><code>hset key attr_name attr_value</code> 存储hash对象</p>
+<p><code>hget key attr_name</code> 读取hash对象</p>
+<p><code>lpush key attr_name attr_value</code> 存储list</p>
+<p><code>lpop key</code> 读取list</p>
+<p><code>sadd key value1 value2 valu3 ...</code> 存储set</p>
+<p><code>smembers key</code> 读取set</p>
+<p><code>zadd key score1 value1 score2 value2 ...</code> zset是有序的set集合，score表示顺序</p>
+<p><code>zrange key 0 -1</code> 查看从头到尾的zset集合</p>
+<h3 id="主从配置"><a href="#主从配置" class="headerlink" title="主从配置"></a>主从配置</h3><p>在主redis服务器<code>redis.conf</code>中，配置<code>bind 主机ip</code>，在从redis服务器<code>redis.conf</code>中，配置<code>bind 从机ip</code>，并在下面加入<code>slaveof   主机ip 端口</code>，然后重启两台redis服务</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
             
-                <div class="post-preview">
-    <a href="/2018/07/17/爬虫-解析篇/">
-        <h1 class="post-title archive">
-            爬虫-解析篇
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-17
-    </p>
-</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/07/17/爬虫-基础篇/">
-        <h1 class="post-title archive">
-            爬虫-基础篇
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-17
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
-</ul>
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
