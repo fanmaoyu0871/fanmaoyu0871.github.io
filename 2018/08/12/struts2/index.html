@@ -12,6 +12,17 @@
 
     <!--Description-->
     
+        <meta name="description" content="struts2结果处理的4种方式
+dispatch：转发（默认）
+redirect：重定向
+chain：转发到action
+redirectAction：重定向到action
+
+struts2中访问servletAPI
+通过ActionContext来访问(常用,后面两种都是基于这种).
+  
+  ">
+    
 
     <!--Author-->
     
@@ -20,7 +31,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="7an&#39;s Blog"/>
+        <meta property="og:title" content="struts(二)"/>
     
 
     <!--Open Graph Description-->
@@ -30,7 +41,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -41,7 +52,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2018/7 - 7an&#39;s Blog</title>
+    <title>struts(二) - 7an&#39;s Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -145,140 +156,112 @@
 </nav>
 
     <!-- Main Content -->
-    
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
 
-<!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
 <header class="intro-header" style="background-image: url('/img/index-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>2018/7</h1>
+                <div class="post-heading">
+                    <h1>struts(二)</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2018-08-12
+                        
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/struts/">#struts</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="/categories/java/">java</a>
+
+                    
+                </div>
             
-                <div class="post-preview">
-    <a href="/2018/07/31/数据库-Redis/">
-        <h1 class="post-title archive">
-            数据库-Redis
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-31
-    </p>
-</div>
+
+            <!-- Gallery -->
             
-                <div class="post-preview">
-    <a href="/2018/07/27/数据库-MongoDB/">
-        <h1 class="post-title archive">
-            数据库-MongoDB
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-27
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/26/爬虫-Scrapy框架2/">
-        <h1 class="post-title archive">
-            爬虫-Scrapy框架(二)
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-26
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/24/爬虫-Scrapy框架1/">
-        <h1 class="post-title archive">
-            爬虫-Scrapy框架(一)
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-24
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/17/爬虫-解析篇/">
-        <h1 class="post-title archive">
-            爬虫-解析篇
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-17
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/17/爬虫-基础篇/">
-        <h1 class="post-title archive">
-            爬虫-基础篇
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-17
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/16/web记忆随笔-css3/">
-        <h1 class="post-title archive">
-            web记忆随笔-css3
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-16
-    </p>
-</div>
-            
-                <div class="post-preview">
-    <a href="/2018/07/04/web记忆随笔/">
-        <h1 class="post-title archive">
-            web记忆随笔-html&css
-        </h1>
-    </a>
-    <p class="post-meta archive">
-        <!-- Date and Author -->
-        
-        2018-07-04
-    </p>
-</div>
-            
-            <div class="archive-before-pagination"></div>
-            <ul class="pager">
-    
-    
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="struts2结果处理的4种方式"><a href="#struts2结果处理的4种方式" class="headerlink" title="struts2结果处理的4种方式"></a>struts2结果处理的4种方式</h3><ul>
+<li><code>dispatch</code>：转发（默认）</li>
+<li><code>redirect</code>：重定向</li>
+<li><code>chain</code>：转发到action</li>
+<li><code>redirectAction</code>：重定向到action</li>
 </ul>
+<h3 id="struts2中访问servletAPI"><a href="#struts2中访问servletAPI" class="headerlink" title="struts2中访问servletAPI"></a>struts2中访问servletAPI</h3><ul>
+<li><p>通过<code>ActionContext</code>来访问(常用,后面两种都是基于这种).</p>
+<p>  <img src="WechatIMG176.jpeg"></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//获取原生session域</div><div class="line">Map&lt;String, Object&gt; map = ActionContext.getContext().getSession();</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过<code>ServletActionContext</code>来访问.</p>
+</li>
+<li><p>通过实现<code>ServletRequestAware</code>接口来访问.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//获取原生response</div><div class="line">Map&lt;String, Object&gt; response = ServletActionContext.getResponse();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="获取参数"><a href="#获取参数" class="headerlink" title="获取参数"></a>获取参数</h3><ul>
+<li><p>属性驱动(不常用)</p>
+<p>  在action类中添加与form表单name相同命名的成员变量,它是线程安全的,每个请求过来都重新创建一个action,所以并发的时候,每个传过来的值属于每个action中的成员变量.</p>
+</li>
+<li><p>对象驱动(实用性一般)</p>
+<ul>
+<li>1.action中定义<code>User user</code></li>
+<li><p>2.jsp中如图定义:</p>
+<p>  <img src="WechatIMG177.jpeg"></p>
+</li>
+</ul>
+</li>
+<li><p>模型驱动</p>
+<p>action实现<code>ModelDriven&lt;User&gt;</code>接口中的<code>getModel</code>方法,如图:</p>
+<p>   <img src="WechatIMG178.jpeg"><br>   <img src="WechatIMG179.jpeg"></p>
+</li>
+</ul>
+<h3 id="向list、map提交参数"><a href="#向list、map提交参数" class="headerlink" title="向list、map提交参数"></a>向list、map提交参数</h3><p><img src="WechatIMG180.jpeg"></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
+</article>
 
     <!-- Footer -->
     <hr />
